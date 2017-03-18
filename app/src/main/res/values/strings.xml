@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">Photo Quiz</string>
+
+    <!-- Text for Headings and buttons. -->
+    <string name="title">Welcome! </string>
+    <string name="subtitle">Test and improve your knowledge in fundamental photography questions</string>
+    <string name="submitButton">Submit your score!</string>
+    <string name="score">Your Score:</string>
+    <string name="showAnswers">Show Answers</string>
+    <string name="reset">Reset</string>
+
+    <!-- Text for Question Headers. -->
+    <string name="question1">Which of the following is NOT a camera manufacturer:</string>
+    <string name="question2">Which of the following settings controls depth of field:</string>
+    <string name="question3">Which of the following increases the amount of light:</string>
+    <string name="question4">With which setting can you DIRECTLY control the freezing of action:</string>
+    <string name="question5">How can you reduce camera shake?</string>
+    <string name="question6">What does SLR stand for?</string>
+    <string name="question7">Which of the following calculates the light in a scene:</string>
+    <string name="question8">What is the measure of a Flash unit’s power:</string>
+    <string name="question9">Which of the following are file format used in digital cameras?</string>
+    <string name="question10">Which of the following are NOT lens types:</string>
+
+    <!-- Text for Edit Texts -->
+    <string name="emptyEditText">Type your answer here...</string>
+
+    <!-- Text for Radio Buttons -->
+    <!-- Question 2 -->
+    <string name="aperture">Aperture</string>
+    <string name="shutterSpeed">Shutter Speed</string>
+    <string name="iso">ISO</string>
+
+    <!-- Question 7 -->
+    <string name="autofocus">Autofocus</string>
+    <string name="metering">Metering</string>
+    <string name="whiteBalance">White Balance</string>
+    <string name="noneOfTheAbove">None of the above</string>
+    
+    <!-- Text for Check Boxes -->
+    <!-- Question 3 -->
+    <string name="decreaseShutterSpeed">Decrease Shutter Speed</string>
+    <string name="increaseAperture">Increase aperture (f number)</string>
+    <string name="increaseISO">Increase ISO</string>
+    <string name="allOfTheAbove">All of the above</string>
+
+    <!-- Question 5 -->
+    <string name="zoomIn">Zoom In</string>
+    <string name="increaseShutterSpeed">Increase Shutter Speed</string>
+    <string name="useImageStabilization">Use image stabilization lens or camera</string>
+
+    <!-- Question 9 -->
+    <string name="jpg">Jpeg</string>
+    <string name="raw">Raw</string>
+    <string name="psd">Psd</string>
+    <string name="png">Png</string>
+
+    <!-- Question 10 -->
+    <string name="pinView">Pin View</string>
+    <string name="wideAngle">Wide Angle</string>
+    <string name="macro">Macro</string>
+    <string name="softBlur">Soft Blur</string>
+
+</resources>
