@@ -57,7 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <!-- Question 1 -->>
+
+                <!-- Question 1 -->
                 <TextView
                     style="@style/questionBox"
                     android:layout_width="match_parent"
@@ -76,7 +77,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="Nikon"/>
+                        android:text="@string/nikon"/>
 
                     <RadioButton
                         android:id="@+id/question1Pentax"
@@ -84,7 +85,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="Pentax"/>
+                        android:text="@string/pentax"/>
 
                     <RadioButton
                         android:id="@+id/question1CarlZeiss"
@@ -92,7 +93,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="Carl Zeiss"/>
+                        android:text="@string/carlZeiss"/>
 
                     <RadioButton
                         android:id="@+id/question1Canon"
@@ -100,11 +101,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="Canon"/>
+                        android:text="@string/canon"/>
 
                 </RadioGroup>
 
-                <!-- Question 2 -->>
+                <!-- Question 2 -->
                 <TextView
                     style="@style/questionBox"
                     android:layout_width="match_parent"
@@ -151,7 +152,7 @@
 
                 </RadioGroup>
 
-                <!-- Question 3 -->>
+                <!-- Question 3 -->
                 <TextView
                     style="@style/questionBox"
                     android:layout_width="match_parent"
@@ -190,7 +191,7 @@
                     android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/allOfTheAbove"/>
 
-                <!-- Question 4 -->>
+                <!-- Question 4 -->
                 <TextView
                     style="@style/questionBox"
                     android:layout_width="match_parent"
@@ -204,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/emptyEditText"/>
 
-                <!-- Question 5 -->>
+                <!-- Question 5 -->
                 <TextView
                     style="@style/questionBox"
                     android:layout_width="match_parent"
@@ -243,7 +244,7 @@
                     android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/useImageStabilization"/>
 
-                <!-- Question 6 -->>
+                <!-- Question 6 -->
                 <TextView
                     style="@style/questionBox"
                     android:layout_width="match_parent"
@@ -257,7 +258,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/emptyEditText"/>
 
-                <!-- Question 7 -->>
+                <!-- Question 7 -->
                 <TextView
                     style="@style/questionBox"
                     android:layout_width="match_parent"
@@ -304,7 +305,7 @@
 
                 </RadioGroup>
 
-                <!-- Question 8 -->>
+                <!-- Question 8 -->
                 <TextView
                     style="@style/questionBox"
                     android:layout_width="match_parent"
@@ -318,7 +319,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/emptyEditText"/>
 
-                <!-- Question 9 -->>
+                <!-- Question 9 -->
                 <TextView
                     style="@style/questionBox"
                     android:layout_width="match_parent"
@@ -357,7 +358,7 @@
                     android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/png"/>
 
-                <!-- Question 10 -->>
+                <!-- Question 10 -->
                 <TextView
                     android:id="@+id/textView"
                     style="@style/questionBox"
@@ -439,7 +440,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="0dp"
-                android:text="0/40"
+                android:text="@string/scoreValue"
                 android:textSize="16sp"/>
 
         </LinearLayout>

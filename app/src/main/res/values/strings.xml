@@ -6,6 +6,7 @@
     <string name="subtitle">Test and improve your knowledge in fundamental photography questions</string>
     <string name="submitButton">Submit your score!</string>
     <string name="score">Your Score:</string>
+    <string name="scoreValue">0/40</string>
     <string name="showAnswers">Show Answers</string>
     <string name="reset">Reset</string>
 
@@ -25,6 +26,12 @@
     <string name="emptyEditText">Type your answer here...</string>
 
     <!-- Text for Radio Buttons -->
+    <!-- Question 1 -->
+    <string name="nikon">Nikon</string>
+    <string name="pentax">Pentax</string>
+    <string name="carlZeiss">Carl Zeiss</string>
+    <string name="canon">Canon</string>
+
     <!-- Question 2 -->
     <string name="aperture">Aperture</string>
     <string name="shutterSpeed">Shutter Speed</string>
