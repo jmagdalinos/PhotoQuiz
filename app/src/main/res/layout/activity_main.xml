@@ -17,9 +17,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="@dimen/margin_general"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/margin_general">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -48,8 +48,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="@dimen/margin_general"
+                android:layout_marginTop="@dimen/margin_general"
                 android:background="@color/darkGrey" />
 
             <LinearLayout
@@ -406,7 +406,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_general"
         android:background="@color/darkGrey"
         android:orientation="horizontal">
 
@@ -414,7 +414,7 @@
             android:id="@+id/submit_Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="@dimen/margin_general"
             android:layout_weight="1"
             android:onClick="submitScoreButton"
             android:text="@string/submitButton"/>
@@ -449,7 +449,7 @@
             android:id="@+id/answers_Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="@dimen/margin_general"
             android:layout_weight="1"
             android:onClick="showAnswers"
             android:text="@string/showAnswers"/>

@@ -5,4 +5,5 @@
     <dimen name="heading">16sp</dimen>
     <dimen name="subHeading">12sp</dimen>
     <dimen name="main_text">14sp</dimen>
+    <dimen name="margin_general">16dp</dimen>
 </resources>
