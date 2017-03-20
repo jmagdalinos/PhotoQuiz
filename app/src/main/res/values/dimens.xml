@@ -6,4 +6,5 @@
     <dimen name="subHeading">12sp</dimen>
     <dimen name="main_text">14sp</dimen>
     <dimen name="margin_general">16dp</dimen>
+    <dimen name="margin_half">8dp</dimen>
 </resources>

@@ -15,20 +15,20 @@
 
     <!-- Style for question boxes-->
     <style name="questionBox">
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginRight">16dp</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:layout_marginTop">@dimen/margin_half</item>
+        <item name="android:layout_marginLeft">@dimen/margin_general</item>
+        <item name="android:layout_marginRight">@dimen/margin_general</item>
+        <item name="android:padding">@dimen/margin_half</item>
         <item name="android:textSize">@dimen/main_text</item>
         <item name="android:background">@drawable/rounded_corner</item>
     </style>
 
     <!-- Style for EditText -->
     <style name="editText">
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginRight">16dp</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:layout_marginTop">@dimen/margin_half</item>
+        <item name="android:layout_marginLeft">@dimen/margin_general</item>
+        <item name="android:layout_marginRight">@dimen/margin_general</item>
+        <item name="android:padding">@dimen/margin_half</item>
         <item name="android:textSize">@dimen/main_text</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textColorHint">@color/mediumGrey</item>
@@ -44,17 +44,17 @@
     <!-- Style for Radio Groups -->
     <style name="radioGroup">
         <item name="android:orientation">vertical</item>
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginRight">16dp</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:layout_marginLeft">@dimen/margin_general</item>
+        <item name="android:layout_marginRight">@dimen/margin_general</item>
+        <item name="android:padding">@dimen/margin_half</item>
     </style>
 
     <!-- Style for Check Boxes -->
     <style name="checkBox">
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">@dimen/main_text</item>
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginRight">16dp</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:layout_marginLeft">@dimen/margin_general</item>
+        <item name="android:layout_marginRight">@dimen/margin_general</item>
+        <item name="android:padding">@dimen/margin_half</item>
     </style>
 </resources>
