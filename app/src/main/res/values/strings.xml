@@ -37,6 +37,16 @@
     <string name="shutterSpeed">Shutter Speed</string>
     <string name="iso">ISO</string>
 
+    <!-- Question 4 -->
+    <string name="question4Answer">Shutter Speed</string>
+
+    <!-- Question 6 -->
+    <string name="question6Answer1">Single-Lens Reflex</string>
+    <string name="question6Answer2">Single Lens Reflex</string>
+
+    <!-- Question 8 -->
+    <string name="question8Answer">Guide Number</string>
+
     <!-- Question 7 -->
     <string name="autofocus">Autofocus</string>
     <string name="metering">Metering</string>

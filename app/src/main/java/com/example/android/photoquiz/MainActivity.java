@@ -9,6 +9,7 @@ package com.example.android.photoquiz;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import static com.example.android.photoquiz.R.string.question4Answer;
+import static com.example.android.photoquiz.R.string.question6Answer1;
+import static com.example.android.photoquiz.R.string.question8Answer;
+
 
 /**
  * This app is a photography quiz which returns a score to the user
@@ -33,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     int[] editTextAnswers = {0,0,0};
     int enableSubmitButtonSwitch = 0; //enableSubmitButtonSwitch = 0 --> Submit button has not been pressed
     int enableShowAnswersSwitch = 0; //enableShowAnswersSwitch = 0 --> Show Answers button has not been pressed
+
 
     //Declare Views
     ViewGroup viewGroup;
@@ -55,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         finalScore = 0;
 
@@ -97,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
         editTextAnswers = savedInstanceState.getIntArray(STATE_EDIT_TEXT_ANSWERS);
         enableSubmitButtonSwitch = savedInstanceState.getInt(STATE_ENABLE_SUBMIT_SWITCH);
         enableShowAnswersSwitch = savedInstanceState.getInt(STATE_ENABLE_SHOW_ANSWERS_SWITCH);
+
+
         //Display variables
         displayScore();
 
@@ -136,31 +146,33 @@ public class MainActivity extends AppCompatActivity {
             int ind = RES_ID[i];
             View view1 = findViewById(ind);
             if (userInput[i] == 1 && userInput[i] == ANSWERS[i]) {
-                view1.setBackgroundColor(getColor(R.color.correctAnswer));
+                view1.setBackgroundColor(ContextCompat.getColor(this, R.color.correctAnswer));
+//                view1.setBackgroundColor(R.color.correctAnswer);
             } else if (userInput[i] == 0 && ANSWERS[i] == 1) {
-                view1.setBackgroundColor(getColor(R.color.wrongAnswer));
+                view1.setBackgroundColor(ContextCompat.getColor(this, R.color.wrongAnswer));
+//                view1.setBackgroundColor(R.color.wrongAnswer);
             }
         }
 
         if (editTextAnswers[0] == 1) {
-            question4EditText.setBackgroundColor(getColor(R.color.correctAnswer));
+            question4EditText.setBackgroundColor(ContextCompat.getColor(this, R.color.correctAnswer));
         } else if (editTextAnswers[0] == 0) {
-            question4EditText.setBackgroundColor(getColor(R.color.wrongAnswer));
-            question4EditText.setText("Shutter Speed");
+            question4EditText.setBackgroundColor(ContextCompat.getColor(this, R.color.wrongAnswer));
+            question4EditText.setText(question4Answer);
         }
 
         if (editTextAnswers[1] == 1) {
-            question6EditText.setBackgroundColor(getColor(R.color.correctAnswer));
+            question6EditText.setBackgroundColor(ContextCompat.getColor(this, R.color.correctAnswer));
         } else if (editTextAnswers[1] == 0) {
-            question6EditText.setBackgroundColor(getColor(R.color.wrongAnswer));
-            question6EditText.setText("Single-Lens Reflex");
+            question6EditText.setBackgroundColor(ContextCompat.getColor(this, R.color.wrongAnswer));
+            question6EditText.setText(question6Answer1);
         }
 
         if (editTextAnswers[2] == 1) {
-            question8EditText.setBackgroundColor(getColor(R.color.correctAnswer));
+            question8EditText.setBackgroundColor(ContextCompat.getColor(this, R.color.correctAnswer));
         } else if (editTextAnswers[2] == 0) {
-            question8EditText.setBackgroundColor(getColor(R.color.wrongAnswer));
-            question8EditText.setText("Guide Number");
+            question8EditText.setBackgroundColor(ContextCompat.getColor(this, R.color.wrongAnswer));
+            question8EditText.setText(question8Answer);
         }
 
         enableShowAnswersSwitch = 1;
@@ -478,31 +490,39 @@ public class MainActivity extends AppCompatActivity {
 
     // Checks EditText Answers
     public void checkQuestion4() {
-//        EditText question4EditText = (EditText) findViewById(R.id.question_4_Edit_Text);
-        String question4Answer = question4EditText.getText().toString();
+        String question4UserAnswer = question4EditText.getText().toString();
+        question4UserAnswer = question4UserAnswer.toUpperCase();
+
+        String question4Answer = getString(R.string.question4Answer);
         question4Answer = question4Answer.toUpperCase();
 
-        if (question4Answer.equals("SHUTTER SPEED")) {
+        if (question4UserAnswer.equals(question4Answer)) {
             editTextAnswers[0] = 1;
         }
     }
 
     public void checkQuestion6() {
-//        EditText question6EditText = (EditText) findViewById(R.id.question_6_Edit_Text);
-        String question6Answer = question6EditText.getText().toString();
-        question6Answer = question6Answer.toUpperCase();
+        String question6UserAnswer = question6EditText.getText().toString();
+        question6UserAnswer = question6UserAnswer.toUpperCase();
 
-        if (question6Answer.equals("SINGLE LENS REFLEX") || question6Answer.equals("SINGLE-LENS REFLEX")) {
+        String question6Answer1 = getString(R.string.question6Answer1);
+        String question6Answer2 = getString(R.string.question6Answer2);
+        question6Answer1 = question6Answer1.toUpperCase();
+        question6Answer2 = question6Answer2.toUpperCase();
+
+        if (question6UserAnswer.equals(question6Answer1) || question6UserAnswer.equals(question6Answer2)) {
             editTextAnswers[1] = 1;
         }
     }
 
     public void checkQuestion8() {
-//        EditText question8EditText = (EditText) findViewById(R.id.question_8_Edit_Text);
-        String question8Answer = question8EditText.getText().toString();
+        String question8UserAnswer = question8EditText.getText().toString();
+        question8UserAnswer = question8UserAnswer.toUpperCase();
+
+        String question8Answer = getString(R.string.question8Answer);
         question8Answer = question8Answer.toUpperCase();
 
-        if (question8Answer.equals("GUIDE NUMBER")) {
+        if (question8UserAnswer.equals(question8Answer)) {
             editTextAnswers[2] = 1;
         }
     }
