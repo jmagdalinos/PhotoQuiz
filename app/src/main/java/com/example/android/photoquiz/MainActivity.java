@@ -136,35 +136,31 @@ public class MainActivity extends AppCompatActivity {
             int ind = RES_ID[i];
             View view1 = findViewById(ind);
             if (userInput[i] == 1 && userInput[i] == ANSWERS[i]) {
-                view1.setBackgroundColor(Color.rgb(129, 199, 132));
+                view1.setBackgroundColor(getColor(R.color.correctAnswer));
             } else if (userInput[i] == 0 && ANSWERS[i] == 1) {
-                view1.setBackgroundColor(Color.rgb(229, 115, 115));
+                view1.setBackgroundColor(getColor(R.color.wrongAnswer));
             }
         }
 
-        EditText view2 = (EditText) findViewById(R.id.question_4_Edit_Text);
-        EditText view3 = (EditText) findViewById(R.id.question_6_Edit_Text);
-        EditText view4 = (EditText) findViewById(R.id.question_8_Edit_Text);
-
         if (editTextAnswers[0] == 1) {
-            view2.setBackgroundColor(Color.rgb(129, 199, 132));
+            question4EditText.setBackgroundColor(getColor(R.color.correctAnswer));
         } else if (editTextAnswers[0] == 0) {
-            view2.setBackgroundColor(Color.rgb(229, 115, 115));
-            view2.setText("Shutter Speed");
+            question4EditText.setBackgroundColor(getColor(R.color.wrongAnswer));
+            question4EditText.setText("Shutter Speed");
         }
 
         if (editTextAnswers[1] == 1) {
-            view3.setBackgroundColor(Color.rgb(129, 199, 132));
+            question6EditText.setBackgroundColor(getColor(R.color.correctAnswer));
         } else if (editTextAnswers[1] == 0) {
-            view3.setBackgroundColor(Color.rgb(229, 115, 115));
-            view3.setText("Single-Lens Reflex");
+            question6EditText.setBackgroundColor(getColor(R.color.wrongAnswer));
+            question6EditText.setText("Single-Lens Reflex");
         }
 
         if (editTextAnswers[2] == 1) {
-            view4.setBackgroundColor(Color.rgb(129, 199, 132));
+            question8EditText.setBackgroundColor(getColor(R.color.correctAnswer));
         } else if (editTextAnswers[2] == 0) {
-            view4.setBackgroundColor(Color.rgb(229, 115, 115));
-            view4.setText("Guide Number");
+            question8EditText.setBackgroundColor(getColor(R.color.wrongAnswer));
+            question8EditText.setText("Guide Number");
         }
 
         enableShowAnswersSwitch = 1;
