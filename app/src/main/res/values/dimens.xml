@@ -7,4 +7,5 @@
     <dimen name="main_text">14sp</dimen>
     <dimen name="margin_general">16dp</dimen>
     <dimen name="margin_half">8dp</dimen>
+    <dimen name="line_height">2dp</dimen>
 </resources>
