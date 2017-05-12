@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,71 +26,104 @@ import static com.example.android.photoquiz.R.string.question8Answer;
 
 
 /**
- * This app is a photography quiz which returns a score to the user
+ * This app is a photography quiz which returns a score to the user.
+ * The correct answers are stored in a final array (@CORRECT_ANSWERS) while another array
+ * (@userInput) stores the user's answers. The two arrays are then crosschecked and a score is
+ * produced based on the user's answers
+ *
+ * When the user pressed the Submit Button, all CheckBoxes, RadioButtons and EditTexts are
+ * disabled so the user cannot change his answers and the score is calculated. Then, the Show
+ * Answers Button is enabled and the Submit Button is disabled.
+ *
+ * When the Answers Button is pressed, the correct answers are displayed by changing the
+ * backgroud color of each answer to red if it is incorrect and green if it is correct.
+ *
+ * When the Reset Button is pressed, the score is reset, as are all the background colors, the
+ * Submit Button is enabled and the Show Answers is disabled.
  */
+
 public class MainActivity extends AppCompatActivity {
-    //Declare variables
-    int finalScore;
-    final int[] RES_ID = {100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127};
-    final int[] ANSWERS = {0,0,1,0,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,1,0,0,1,0,0,1};
-    int[] userInput = new int[28];
+    
+    /** We assign static Resource Ids to all CheckBoxes and RadioButtons with values from 
+     * @RES_ID */
+    private final int[] RES_ID = {100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,
+            116,117,118,119,120,121,122,123,124,125,126,127};
+
+    /** @CORRECT_ANSWERS informs us whether a CheckBox or RadioButton contains a correct answer.
+     * We use it to check against user answers */
+    private final boolean[] CORRECT_ANSWERS = {false,false,true,false,true,false,false,false,true,false,true,false,false,true,false,true,false,true,false,false,true,true,false,false,true,false,
+            false,true};
+
+    /** @userInput stores the answers given by the user. If all are correct, all its values will
+     * be equal to those of @CORRECT_ANSWERS */
+    boolean[] userInput = new boolean[28];
+
+    /** @lastIndexUsed stores the index position of the last Resource Id used so the the same
+     * Resource Id is not used twice*/
     int lastIndexUsed = 0;
-    int[] editTextAnswers = {0,0,0};
-    int enableSubmitButtonSwitch = 0; //enableSubmitButtonSwitch = 0 --> Submit button has not been pressed
-    int enableShowAnswersSwitch = 0; //enableShowAnswersSwitch = 0 --> Show Answers button has not been pressed
 
+    int finalScore;
+    boolean[] editTextAnswers = {false,false,false};
+    
+    /** Variable @pressedSubmitButtonSwitch controls whether or not the Submit button has been
+     * pressed. 
+     * If false, the button has not been pressed. We use later later as a switch in the code to 
+     * enable or disable both the submitButton and the showAnswersButton */
+    boolean pressedSubmitButtonSwitch = false;
 
-    //Declare Views
+    /** Variable @pressedShowAnswersButtonSwitch controls whether or not the showAnswers button has been
+     * pressed. If false, the button has not been pressed. We use later later as a switch in the code to 
+     * enable or disable both the submitButton and the showAnswersButton */
+    boolean pressedShowAnswersButtonSwitch = false;
+
+    // Declare Views
     ViewGroup viewGroup;
     TextView finalScoreTextView;
     Button answersButton;
     Button submitButton;
+    Button resetButton;
     EditText question4EditText;
     EditText question6EditText;
     EditText question8EditText;
 
-
-    //Prepare to save instance
+    // Declare final strings to be used to save instance
     private static final String STATE_FINAL_SCORE = "finalScore";
     private static final String STATE_USER_INPUT = "userInput";
     private static final String STATE_EDIT_TEXT_ANSWERS = "editTextAnswers";
-    private static final String STATE_ENABLE_SUBMIT_SWITCH = "enableSubmitButtonSwitch";
-    private static final String STATE_ENABLE_SHOW_ANSWERS_SWITCH = "enableShowAnswersSwitch";
+    private static final String STATE_PRESSED_SUBMIT_SWITCH = "pressedSubmitButtonSwitch";
+    private static final String STATE_PRESSED_SHOW_ANSWERS_BUTTON_SWITCH = "pressedShowAnswersButtonSwitch";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        // Set final score to 0
         finalScore = 0;
 
-        //Initialize Views
+        // Initialize Views
         initializeViews();
-
+        // Set the user's answers to false
         initArray();
+        // Assign Resource Ids to the Views using @RES_ID
         assignResIds();
+        // Display score
         displayScore();
 
-        if (enableSubmitButtonSwitch == 1) {
-            disableSubmitButton();
-            enableAnswersButton();
-        } else if (enableSubmitButtonSwitch == 0) {
-            enableSubmitButton();
-            disableAnswersButton();
-        }
-
+        disableAnswersButton();
+        disableResetButton();
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Store variable values
         savedInstanceState.putInt(STATE_FINAL_SCORE, finalScore);
-        savedInstanceState.putIntArray(STATE_USER_INPUT, userInput);
-        savedInstanceState.putIntArray(STATE_EDIT_TEXT_ANSWERS, editTextAnswers);
-        savedInstanceState.putInt(STATE_ENABLE_SUBMIT_SWITCH, enableSubmitButtonSwitch);
-        savedInstanceState.putInt(STATE_ENABLE_SHOW_ANSWERS_SWITCH, enableShowAnswersSwitch);
+        savedInstanceState.putBooleanArray(STATE_USER_INPUT, userInput);
+        savedInstanceState.putBooleanArray(STATE_EDIT_TEXT_ANSWERS, editTextAnswers);
+        savedInstanceState.putBoolean(STATE_PRESSED_SUBMIT_SWITCH, pressedSubmitButtonSwitch);
+        savedInstanceState.putBoolean(STATE_PRESSED_SHOW_ANSWERS_BUTTON_SWITCH, pressedShowAnswersButtonSwitch);
 
-        //Always call the superclass so it can save the view hierarchy state
+        // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -99,132 +131,179 @@ public class MainActivity extends AppCompatActivity {
         // Always call the superclass so it can restore the view hierarchy
         super.onRestoreInstanceState(savedInstanceState);
 
-        //Retrieve variable values
+        // Retrieve variable values
         finalScore = savedInstanceState.getInt(STATE_FINAL_SCORE);
-        userInput = savedInstanceState.getIntArray(STATE_USER_INPUT);
-        editTextAnswers = savedInstanceState.getIntArray(STATE_EDIT_TEXT_ANSWERS);
-        enableSubmitButtonSwitch = savedInstanceState.getInt(STATE_ENABLE_SUBMIT_SWITCH);
-        enableShowAnswersSwitch = savedInstanceState.getInt(STATE_ENABLE_SHOW_ANSWERS_SWITCH);
-
+        userInput = savedInstanceState.getBooleanArray(STATE_USER_INPUT);
+        editTextAnswers = savedInstanceState.getBooleanArray(STATE_EDIT_TEXT_ANSWERS);
+        pressedSubmitButtonSwitch = savedInstanceState.getBoolean(STATE_PRESSED_SUBMIT_SWITCH);
+        pressedShowAnswersButtonSwitch = savedInstanceState.getBoolean(STATE_PRESSED_SHOW_ANSWERS_BUTTON_SWITCH);
 
         //Display variables
         displayScore();
 
-        if (enableSubmitButtonSwitch == 1) {
+        // Check if the Submit Button has been pressed and enable/disable buttons accordingly
+        if (pressedSubmitButtonSwitch == true) {
             disableSubmitButton();
             enableAnswersButton();
-        } else if (enableSubmitButtonSwitch == 0) {
+            enableResetButton();
+            disableViews();
+
+        } else if (pressedSubmitButtonSwitch == false) {
             enableSubmitButton();
             disableAnswersButton();
         }
-
-        if (enableShowAnswersSwitch == 1) {
+        // Check if the Show Answers has been pressed and enable/disable buttons accordingly
+        if (pressedShowAnswersButtonSwitch == true) {
             answersButton.performClick();
         }
     }
 
     public void submitScoreButton (View view) {
-        //Checks EditText answers
+        // Checks EditText answers
         checkQuestion4();
         checkQuestion6();
         checkQuestion8();
 
-        //Displays score, enables "Show Results" Button, disables "Submit Your Score!" Button
-        Log.v("MainActivity", "Score: " + finalScore);
+        // Calculate score
         calcScore();
+        // Display score
         displayScore();
+        // Enable the Show Answers Button
         enableAnswersButton();
+        // Enable the Reset Button
+        enableResetButton();
+        // Disable the Submit Button
         disableSubmitButton();
+        // Disable all views so the user cannot change his answers
         disableViews();
 
-        enableSubmitButtonSwitch = 1;
-
+        // Stores information that the Submit Button has been pressed
+        pressedSubmitButtonSwitch = true;
     }
 
     public void showAnswers (View view) {
+        // Use for loop to get all CheckBoxes and RadioButton sequentially
         for (int i = 0; i < 28; i++) {
+            // Get Resource Id
             int ind = RES_ID[i];
+            // Get view
             View view1 = findViewById(ind);
-            if (userInput[i] == 1 && userInput[i] == ANSWERS[i]) {
+            if (userInput[i] == true && userInput[i] == CORRECT_ANSWERS[i]) {
+                // Assign green background
                 view1.setBackgroundColor(ContextCompat.getColor(this, R.color.correctAnswer));
-//                view1.setBackgroundColor(R.color.correctAnswer);
-            } else if (userInput[i] == 0 && ANSWERS[i] == 1) {
+            } else if (userInput[i] == false && CORRECT_ANSWERS[i] == true) {
+                // Assign red background
                 view1.setBackgroundColor(ContextCompat.getColor(this, R.color.wrongAnswer));
-//                view1.setBackgroundColor(R.color.wrongAnswer);
             }
         }
-
-        if (editTextAnswers[0] == 1) {
+        // Check if user's answer is correct
+        if (editTextAnswers[0] == true) {
+            // Assign green background
             question4EditText.setBackgroundColor(ContextCompat.getColor(this, R.color.correctAnswer));
-        } else if (editTextAnswers[0] == 0) {
+        } else if (editTextAnswers[0] == false) {
+            // Assign red background
             question4EditText.setBackgroundColor(ContextCompat.getColor(this, R.color.wrongAnswer));
+            // Show correct answer
             question4EditText.setText(question4Answer);
         }
-
-        if (editTextAnswers[1] == 1) {
+        // Check if user's answer is correct
+        if (editTextAnswers[1] == true) {
+            // Assign green background
             question6EditText.setBackgroundColor(ContextCompat.getColor(this, R.color.correctAnswer));
-        } else if (editTextAnswers[1] == 0) {
+        } else if (editTextAnswers[1] == false) {
+            // Assign red background
             question6EditText.setBackgroundColor(ContextCompat.getColor(this, R.color.wrongAnswer));
+            // Show correct answer
             question6EditText.setText(question6Answer1);
         }
-
-        if (editTextAnswers[2] == 1) {
+        // Check if user's answer is correct
+        if (editTextAnswers[2] == true) {
+            // Assign green background
             question8EditText.setBackgroundColor(ContextCompat.getColor(this, R.color.correctAnswer));
-        } else if (editTextAnswers[2] == 0) {
+        } else if (editTextAnswers[2] == false) {
+            // Assign red background
             question8EditText.setBackgroundColor(ContextCompat.getColor(this, R.color.wrongAnswer));
+            // Show correct answer
             question8EditText.setText(question8Answer);
         }
 
-        enableShowAnswersSwitch = 1;
+        // Disable Show Answers Button
+        disableAnswersButton();
+        // Stores information that the Show Answers Button has been pressed
+        pressedShowAnswersButtonSwitch = true;
     }
 
     public void resetButton (View view) {
-        //Resets and shows all variables, disables "Show Results" Button, enables "Submit Your Score!" Button
+        // Reset score
         finalScore = 0;
 
+        // Reset all user answers
         initArray();
+        // Display score
         displayScore();
+        // Enable the Submit Score Button
         enableSubmitButton();
+        // Disable the Show Answers Button
         disableAnswersButton();
+        // Disable the Reset Button
+        disableResetButton();
+        // Enable all views
         enableViews();
+        // Remove red and green background color
         resetBackgroundColors();
 
-        enableSubmitButtonSwitch = 0;
-        enableShowAnswersSwitch = 0;
+        // Stores information that the Submit Button has not been pressed
+        pressedSubmitButtonSwitch = false;
+        // Stores information that the Show Answers Button has been pressed
+        pressedShowAnswersButtonSwitch = false;;
     }
 
 
-    //Resets userInput and editTextAnswers array to 0
+    // Reset userInput and editTextAnswers array to false to show that the user has not answered
+    // any questions
     public void initArray() {
+        // Use for loop to select all CheckBoxes and RadioButtons sequentially
         for (int i = 0; i < 28; i++) {
-            userInput[i] = 0;
+            // Set value to false
+            userInput[i] = false;
         }
 
+        // Use for loop to select all EditTexts sequentially
         for (int j = 0; j < 3; j ++) {
-            editTextAnswers[j] = 0;
+            // Set value to false
+            editTextAnswers[j] = false;
         }
     }
 
-
-    //Assigns Resource Ids to all CheckBoxes and RadioButtons from resId array
+    // Assign Resource Ids to all CheckBoxes and RadioButtons from resId array
     public void assignResIds () {
-//        ViewGroup viewGroup = (ViewGroup) findViewById(R.id.questions);
+        // Get the number of views in the layout
         int counterViews = viewGroup.getChildCount();
 
+        // Use for loop to select all CheckBoxes and RadioButtons sequentially
         for (int i = 0; i < counterViews; i++) {
+            // Get child i of viewGroup
             View v = viewGroup.getChildAt(i);
 
+            // Check if child is CheckBox
             if (v instanceof CheckBox) {
+                // Select the last used Resource ID and assign it to the CheckBox
                 v.setId(RES_ID[lastIndexUsed]);
+                // Increase lastIndexUsed so it is not used again
                 lastIndexUsed ++;
             }
+            // Check if child is RadioGroup
             else if (v instanceof RadioGroup) {
                 RadioGroup rdgp = (RadioGroup) v;
+                // Get the number of RadioButtons in the RadioGroup
                 int radioButtons = rdgp.getChildCount();
 
+                // Use for loop to select all RadioButtons sequentially
                 for (int j = 0; j < radioButtons; j++) {
                     View vr = rdgp.getChildAt(j);
+                    // Select the last used Resource ID and assign it to the RadioButton
                     vr.setId(RES_ID[lastIndexUsed]);
+                    // Increase lastIndexUsed so it is not used again
                     lastIndexUsed ++;
                 }
             }
@@ -232,13 +311,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    //Checks RadioButton Answers and calls resIdIndex
+    // Check RadioButton Answers and calls resIdIndex
     public void checkQuestionRadioButton(View view) {
-        //Is the view now checked?
+        // Is the view now checked?
         boolean checked = ((RadioButton) view).isChecked();
 
-        //Check which RadioButton was clicked
+        // Check which RadioButton was clicked and calls method @resIdIndexChecked to store this
+        // information. If it was not clicked, it calls @resIdIndexUnchecked
         switch (view.getId()) {
             // Question 1
             case 100:
@@ -343,13 +422,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    //Checks CheckBox Answers
+    // Check CheckBox Answers
     public void checkQuestionCheckBoxes(View view) {
-        //Is the view now checked?
+        // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
 
-        //Check which CheckBox was clicked
+        // Check which CheckBox was clicked and calls method @resIdIndexChecked to store this
+        // information. If it was not clicked, it calls @resIdIndexUnchecked
         switch (view.getId()) {
             // Question 3
             case 108:
@@ -487,189 +566,237 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    // Checks EditText Answers
+    // Check EditText Answers
     public void checkQuestion4() {
+        // Get user's answer
         String question4UserAnswer = question4EditText.getText().toString();
+        // Convert user's answer to uppercase to in case the user has no capital letters
         question4UserAnswer = question4UserAnswer.toUpperCase();
+        // Get correct answer
+        String questionCorrect4Answer = getString(R.string.question4Answer);
+        // Convert correct answer to uppercase to in case the user has no capital letters
+        questionCorrect4Answer = questionCorrect4Answer.toUpperCase();
 
-        String question4Answer = getString(R.string.question4Answer);
-        question4Answer = question4Answer.toUpperCase();
-
-        if (question4UserAnswer.equals(question4Answer)) {
-            editTextAnswers[0] = 1;
+        // Crosscheck answer and store true if the user answered correctly
+        if (question4UserAnswer.equals(questionCorrect4Answer)) {
+            editTextAnswers[0] = true;
         }
     }
 
     public void checkQuestion6() {
+        // Get user's answer
         String question6UserAnswer = question6EditText.getText().toString();
+        // Convert user's answer to uppercase to in case the user has no capital letters
         question6UserAnswer = question6UserAnswer.toUpperCase();
 
-        String question6Answer1 = getString(R.string.question6Answer1);
-        String question6Answer2 = getString(R.string.question6Answer2);
-        question6Answer1 = question6Answer1.toUpperCase();
-        question6Answer2 = question6Answer2.toUpperCase();
+        // Since the answer is correct whether the dash is used or not, 2 correct answers are
+        // provided
+        // Get correct answer 1
+        String question6CorrectAnswer1 = getString(R.string.question6Answer1);
+        // Get correct answer 2
+        String question6CorrectAnswer2 = getString(R.string.question6Answer2);
+        // Convert correct answers to uppercase to in case the user has no capital letters
+        question6CorrectAnswer1 = question6CorrectAnswer1.toUpperCase();
+        question6CorrectAnswer2 = question6CorrectAnswer2.toUpperCase();
 
-        if (question6UserAnswer.equals(question6Answer1) || question6UserAnswer.equals(question6Answer2)) {
-            editTextAnswers[1] = 1;
+        // Crosscheck answer and store true if the user answered correctly
+        if (question6UserAnswer.equals(question6CorrectAnswer1) || question6UserAnswer.equals(question6CorrectAnswer2)) {
+            editTextAnswers[1] = true;
         }
     }
 
     public void checkQuestion8() {
+        // Get user's answer
         String question8UserAnswer = question8EditText.getText().toString();
+        // Convert user's answer to uppercase to in case the user has no capital letters
         question8UserAnswer = question8UserAnswer.toUpperCase();
 
-        String question8Answer = getString(R.string.question8Answer);
-        question8Answer = question8Answer.toUpperCase();
+        // Get correct answer
+        String question8CorrectAnswer = getString(R.string.question8Answer);
+        // Convert correct answer to uppercase to in case the user has no capital letters
+        question8CorrectAnswer = question8CorrectAnswer.toUpperCase();
 
-        if (question8UserAnswer.equals(question8Answer)) {
-            editTextAnswers[2] = 1;
+        // Crosscheck answer and store true if the user answered correctly
+        if (question8UserAnswer.equals(question8CorrectAnswer)) {
+            editTextAnswers[2] = true;
         }
     }
 
-
-    //Finds index of Resource Id in resID array and assign value in userInput array based on user's answer
+    // Find index of Resource Id in resID array and assign value in userInput array based on
+    // user's answer - true for correct
     public void resIdIndexChecked(int number) {
+        // Use for loop to check the position in RES_ID of number
         for (int i = 0; i < 28; i ++) {
             if (RES_ID[i] == number) {
-                userInput[i] = 1;
+                // Assign true to userInput to indicate a correct answer
+                userInput[i] = true;
                 break;
             }
         }
     }
 
+    // Find index of Resource Id in resID array and assign value in userInput array based on
+    // user's answer - false for incorrect
     public void resIdIndexUnchecked(int number) {
+        // Use for loop to check the position in RES_ID of number
         for (int i = 0; i < 28; i ++) {
             if (RES_ID[i] == number) {
-                userInput[i] = 0;
+                // Assign false to userInput to indicate an incorrect answer
+                userInput[i] = false;
                 break;
             }
         }
     }
 
-
-    //Calculate score
+    // Calculate score
     public void calcScore () {
+        // Use for loop to get all CheckBoxes and RadioButtons sequentially
         for (int i = 0; i < 28; i ++) {
-            if (userInput[i] == ANSWERS[i] && ANSWERS[i] == 1){
+            // Check if the user's answer is the same as the correct one
+            if (userInput[i] == CORRECT_ANSWERS[i] && CORRECT_ANSWERS[i] == true){
+                // Increase score by 2
                 finalScore += 2;
             }
         }
-
+        // Use for loop to get all EditBoxes sequentially
         for (int j = 0; j < 3; j ++) {
-            if (editTextAnswers[j] == 1) {
+            // Check if the user's answer is the same as the correct one
+            if (editTextAnswers[j] == true) {
+                // Increase score by 6
                 finalScore += 6;
             }
         }
     }
 
-
-    //Display score
+    // Display score
     public void displayScore () {
-//        TextView finalScoreTextView = (TextView) findViewById(R.id.score_Box);
         finalScoreTextView.setText("" + finalScore + "/40");
     }
 
-
-    //Enable/Disable Buttons & Views
+    // Enable Show Answer Button
     public void enableAnswersButton() {
-        //Enable "Show Answers" button
-//        Button enableAnswersButton = (Button) findViewById(R.id.answers_Button);
         answersButton.setEnabled(true);
     }
 
+    // Disable Show Answer Button
     public void disableAnswersButton () {
-        //Disable "Show Answers" button
-//        Button disableAnswersButton = (Button) findViewById(R.id.answers_Button);
         answersButton.setEnabled(false);
     }
 
+    // Enable Submit Button
     public void enableSubmitButton () {
-        //Enable "Submit Your Score!" button
-//        Button disableSubmitButton = (Button) findViewById(R.id.submit_Button);
         submitButton.setEnabled(true);
     }
 
+    // Disable Submit Button
     public void disableSubmitButton () {
-        //Disable "Submit Your Score!" button
-//        Button disableSubmitButton = (Button) findViewById(R.id.submit_Button);
         submitButton.setEnabled(false);
     }
 
+    // Enable Reset Button
+    public void enableResetButton () {
+        resetButton.setEnabled(true);
+    }
+
+    // Disable Reset Button
+    public void disableResetButton () {
+        resetButton.setEnabled(false);
+    }
+
+    // Disables all TextBoxes, RadioButtons and EditTexts so the user cannot change them after
+    // pressing the Submit Button
     public void disableViews () {
-        //Disables all CheckBoxes, RadioButtons and EditViews
-//        ViewGroup viewGroup = (ViewGroup) findViewById(R.id.questions);
+        // Get the number of views in the layout
         int counterViews = viewGroup.getChildCount();
 
+        // Use for loop to select all views sequentially
         for (int i = 0; i < counterViews; i++) {
+            // Get child i of viewGroup
             View v = viewGroup.getChildAt(i);
-
+            // Check if child is CheckBox
             if (v instanceof CheckBox) {
                 CheckBox chk = (CheckBox) v;
+                // Disable CheckBox
                 chk.setEnabled(false);
-
             }
+            // Check if child is RadioGroup
             else if (v instanceof RadioGroup) {
                 RadioGroup rdgp = (RadioGroup) v;
+                // Get the number of RadioButtons in the RadioGroup
                 int radioButtons = rdgp.getChildCount();
-
+                // Use for loop to select all RadioButtons sequentially
                 for (int j = 0; j < radioButtons; j++) {
                     View vr = rdgp.getChildAt(j);
                     RadioButton rdb = (RadioButton) vr;
+                    // Disable RadioButton
                     rdb.setEnabled(false);
                 }
             }
+            // Check if child is EditText
             else if (v instanceof EditText) {
                 EditText edt = (EditText) v;
+                // Disable EditText
                 edt.setEnabled(false);
             }
         }
     }
 
+    // Enables all TextBoxes, RadioButtons and EditTexts to prepare for a new quiz
     public void enableViews () {
-        //Enables all CheckBoxes, RadioButtons and EditViews and resets them
-//        ViewGroup viewGroup = (ViewGroup) findViewById(R.id.questions);
+        // Get the number of views in the layout
         int counterViews = viewGroup.getChildCount();
 
+        // Use for loop to select all views sequentially
         for (int i = 0; i < counterViews; i++) {
+            // Get child i of viewGroup
             View v = viewGroup.getChildAt(i);
-
+            //Check if child is CheckBox
             if (v instanceof CheckBox) {
                 CheckBox chk = (CheckBox) v;
+                // Enable CheckBox
                 chk.setEnabled(true);
+                // Un-check CheckBox
                 chk.setChecked(false);
             }
+            //Check if child is RadioGroup
             else if (v instanceof RadioGroup) {
                 RadioGroup rdgp = (RadioGroup) v;
+                // Un-check RadioGroup
                 rdgp.clearCheck();
+                // Get the number of RadioButtons in the RadioGroup
                 int radioButtons = rdgp.getChildCount();
+                // Use for loop to select all RadioButtons sequentially
                 for (int j = 0; j < radioButtons; j++) {
                     View vr = rdgp.getChildAt(j);
                     RadioButton rdb = (RadioButton) vr;
+                    // Enable RadioButton
                     rdb.setEnabled(true);
                 }
             }
+            // Check if child is EditText
             else if (v instanceof EditText) {
                 EditText edt = (EditText) v;
+                // Disable EditText
                 edt.setEnabled(true);
+                // Set Text to ""
                 edt.setText("");
             }
         }
     }
 
-
-    //Resets background colors
+    //Removes background colors for all TextBoxes, RadioButtons and EditTexts to prepare for a new
+    // quiz
     public void resetBackgroundColors () {
+        // Use for loop to select all CheckBoxes and RadioButtons sequentially
         for (int i = 0; i < 28; i ++) {
             int ind = RES_ID[i];
+            // Get view
             View view1 = findViewById(ind);
+            // Set color to transparent
             view1.setBackgroundColor(Color.TRANSPARENT);
         }
 
-//        View view2 = findViewById(R.id.question_4_Edit_Text);
-//        View view3 = findViewById(R.id.question_6_Edit_Text);
-//        View view4 = findViewById(R.id.question_8_Edit_Text);
-
+        // Set background color of EditBoxes to transparent
         question4EditText.setBackgroundColor(Color.TRANSPARENT);
         question6EditText.setBackgroundColor(Color.TRANSPARENT);
         question8EditText.setBackgroundColor(Color.TRANSPARENT);
@@ -679,11 +806,11 @@ public class MainActivity extends AppCompatActivity {
     public void initializeViews() {
         answersButton = (Button) findViewById(R.id.answers_Button);
         submitButton = (Button) findViewById(R.id.submit_Button);
+        resetButton = (Button) findViewById(R.id.reset_Button);
         viewGroup = (ViewGroup) findViewById(R.id.questions);
         finalScoreTextView = (TextView) findViewById(R.id.score_Box);
         question4EditText = (EditText) findViewById(R.id.question_4_Edit_Text);
         question6EditText = (EditText) findViewById(R.id.question_6_Edit_Text);
         question8EditText = (EditText) findViewById(R.id.question_8_Edit_Text);
-
     }
 }

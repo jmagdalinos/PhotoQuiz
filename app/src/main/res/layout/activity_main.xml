@@ -8,7 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.photoquiz.MainActivity">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -30,173 +29,166 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
                 android:text="@string/title"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/heading"/>
+                style="@style/heading"/>
 
             <TextView
                 android:id="@+id/testingView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:text="@string/subtitle"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/subHeading"/>
+                style="@style/subHeading"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/line_height"
-                android:layout_marginBottom="@dimen/margin_general"
-                android:layout_marginTop="@dimen/margin_general"
-                android:background="@color/darkGrey" />
+                style="@style/divider"/>
 
             <LinearLayout
-                android:id="@+id/questions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:id="@+id/questions">
 
                 <!-- Question 1 -->
                 <TextView
-                    style="@style/questionBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/question1" />
+                    android:text="@string/question1"
+                    style="@style/questionBox"/>
 
                 <RadioGroup
                     android:id="@+id/question1"
-                    style="@style/radioGroup"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    style="@style/radioGroup">
 
                     <RadioButton
                         android:id="@+id/question1Nikon"
-                        style="@style/radioButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="@string/nikon"/>
+                        android:text="@string/nikon"
+                        style="@style/radioButton"/>
 
                     <RadioButton
                         android:id="@+id/question1Pentax"
-                        style="@style/radioButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="@string/pentax"/>
+                        android:text="@string/pentax"
+                        style="@style/radioButton"/>
 
                     <RadioButton
                         android:id="@+id/question1CarlZeiss"
-                        style="@style/radioButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="@string/carlZeiss"/>
+                        android:text="@string/carlZeiss"
+                        style="@style/radioButton"/>
 
                     <RadioButton
                         android:id="@+id/question1Canon"
-                        style="@style/radioButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="@string/canon"/>
+                        android:text="@string/canon"
+                        style="@style/radioButton"/>
 
                 </RadioGroup>
 
                 <!-- Question 2 -->
                 <TextView
-                    style="@style/questionBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/question2"/>
+                    android:text="@string/question2"
+                    style="@style/questionBox"/>
 
                 <RadioGroup
                     android:id="@+id/question2"
-                    style="@style/radioGroup"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    style="@style/radioGroup">
 
                     <RadioButton
                         android:id="@+id/question2Aperture"
-                        style="@style/radioButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="@string/aperture"/>
+                        android:text="@string/aperture"
+                        style="@style/radioButton"/>
 
                     <RadioButton
                         android:id="@+id/question2ShutterSpeed"
-                        style="@style/radioButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="@string/shutterSpeed"/>
+                        android:text="@string/shutterSpeed"
+                        style="@style/radioButton"/>
 
                     <RadioButton
                         android:id="@+id/question2ISO"
-                        style="@style/radioButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="@string/iso"/>
+                        android:text="@string/iso"
+                        style="@style/radioButton"/>
 
                     <RadioButton
                         android:id="@+id/question2None"
-                        style="@style/radioButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="@string/noneOfTheAbove"/>
+                        android:text="@string/noneOfTheAbove"
+                        style="@style/radioButton"/>
 
                 </RadioGroup>
 
                 <!-- Question 3 -->
                 <TextView
-                    style="@style/questionBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/question3"/>
+                    android:text="@string/question3"
+                    style="@style/questionBox"/>
 
                 <CheckBox
                     android:id="@+id/question3DecSpeed"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/decreaseShutterSpeed"/>
+                    android:text="@string/decreaseShutterSpeed"
+                    style="@style/checkBox"/>
 
                 <CheckBox
                     android:id="@+id/question3IncF"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/increaseAperture"/>
+                    android:text="@string/increaseAperture"
+                    style="@style/checkBox"/>
 
                 <CheckBox
                     android:id="@+id/question3IncISO"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/increaseISO"/>
+                    android:text="@string/increaseISO"
+                    style="@style/checkBox"/>
 
                 <CheckBox
                     android:id="@+id/question3All"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/allOfTheAbove"/>
+                    android:text="@string/allOfTheAbove"
+                    style="@style/checkBox"/>
 
                 <!-- Question 4 -->
                 <TextView
-                    style="@style/questionBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/question4"/>
+                    android:text="@string/question4"
+                    style="@style/questionBox"/>
 
                 <EditText
                     android:id="@+id/question_4_Edit_Text"
@@ -207,18 +199,18 @@
 
                 <!-- Question 5 -->
                 <TextView
-                    style="@style/questionBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/question5"/>
+                    android:text="@string/question5"
+                    style="@style/questionBox"/>
 
                 <CheckBox
                     android:id="@+id/question5ZoomIn"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/zoomIn"/>
+                    android:text="@string/zoomIn"
+                    style="@style/checkBox"/>
 
                 <CheckBox
                     android:id="@+id/question5IncShutterSpeed"
@@ -230,62 +222,62 @@
 
                 <CheckBox
                     android:id="@+id/question5IncF"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/increaseAperture"/>
+                    android:text="@string/increaseAperture"
+                    style="@style/checkBox"/>
 
                 <CheckBox
                     android:id="@+id/question5IS"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/useImageStabilization"/>
+                    android:text="@string/useImageStabilization"
+                    style="@style/checkBox"/>
 
                 <!-- Question 6 -->
                 <TextView
-                    style="@style/questionBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/question6"/>
+                    android:text="@string/question6"
+                    style="@style/questionBox"/>
 
                 <EditText
                     android:id="@+id/question_6_Edit_Text"
-                    style="@style/editText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/emptyEditText"/>
+                    android:hint="@string/emptyEditText"
+                    style="@style/editText"/>
 
                 <!-- Question 7 -->
                 <TextView
-                    style="@style/questionBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/question7"/>
+                    android:text="@string/question7"
+                    style="@style/questionBox"/>
 
                 <RadioGroup
                     android:id="@+id/question7"
-                    style="@style/radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionRadioButton">
+                    android:onClick="checkQuestionRadioButton"
+                    style="@style/radioGroup">
 
                     <RadioButton
                         android:id="@+id/question7AF"
-                        style="@style/radioButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/autofocus"/>
+                        android:text="@string/autofocus"
+                        style="@style/radioButton"/>
 
                     <RadioButton
                         android:id="@+id/question7Metering"
-                        style="@style/radioButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="@string/metering"/>
+                        android:text="@string/metering"
+                        style="@style/radioButton"/>
 
                     <RadioButton
                         android:id="@+id/question7WB"
@@ -297,106 +289,106 @@
 
                     <RadioButton
                         android:id="@+id/question7None"
-                        style="@style/radioButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="checkQuestionRadioButton"
-                        android:text="@string/noneOfTheAbove"/>
+                        android:text="@string/noneOfTheAbove"
+                        style="@style/radioButton"/>
 
                 </RadioGroup>
 
                 <!-- Question 8 -->
                 <TextView
-                    style="@style/questionBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/question8"/>
+                    android:text="@string/question8"
+                    style="@style/questionBox"/>
 
                 <EditText
                     android:id="@+id/question_8_Edit_Text"
-                    style="@style/editText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/emptyEditText"/>
+                    android:hint="@string/emptyEditText"
+                    style="@style/editText"/>
 
                 <!-- Question 9 -->
                 <TextView
-                    style="@style/questionBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/question9"/>
+                    android:text="@string/question9"
+                    style="@style/questionBox"/>
 
                 <CheckBox
                     android:id="@+id/question9Jpg"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/jpg"/>
+                    android:text="@string/jpg"
+                    style="@style/checkBox"/>
 
                 <CheckBox
                     android:id="@+id/question9Raw"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/raw"/>
+                    android:text="@string/raw"
+                    style="@style/checkBox"/>
 
                 <CheckBox
                     android:id="@+id/question9Psd"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/psd"/>
+                    android:text="@string/psd"
+                    style="@style/checkBox"/>
 
                 <CheckBox
                     android:id="@+id/question9Png"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/png"/>
+                    android:text="@string/png"
+                    style="@style/checkBox"/>
 
                 <!-- Question 10 -->
                 <TextView
                     android:id="@+id/textView"
-                    style="@style/questionBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/question10" />
+                    android:text="@string/question10"
+                    style="@style/questionBox"/>
 
                 <CheckBox
                     android:id="@+id/question10PinView"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/pinView"/>
+                    android:text="@string/pinView"
+                    style="@style/checkBox"/>
 
                 <CheckBox
                     android:id="@+id/question10WideAngle"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/wideAngle"/>
+                    android:text="@string/wideAngle"
+                    style="@style/checkBox"/>
 
                 <CheckBox
                     android:id="@+id/question10Macro"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/macro"/>
+                    android:text="@string/macro"
+                    style="@style/checkBox"/>
 
                 <CheckBox
                     android:id="@+id/question10SoftBlur"
-                    style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="checkQuestionCheckBoxes"
-                    android:text="@string/softBlur"/>
+                    android:text="@string/softBlur"
+                    style="@style/checkBox"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -429,19 +421,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="0dp"
                 android:text="@string/score"
-                android:textSize="@dimen/heading"/>
+                style="@style/scoreTextView"/>
 
             <TextView
                 android:id="@+id/score_Box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="0dp"
                 android:text="@string/scoreValue"
-                android:textSize="@dimen/heading"/>
+                style="@style/scoreTextView"/>
 
         </LinearLayout>
 
@@ -455,6 +443,7 @@
             android:text="@string/showAnswers"/>
 
     </LinearLayout>
+
     <Button
         android:id="@+id/reset_Button"
         android:layout_width="match_parent"
