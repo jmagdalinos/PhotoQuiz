@@ -67,7 +67,6 @@
                         android:id="@+id/question1Nikon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="checkQuestionRadioButton"
                         android:text="@string/nikon"
                         style="@style/radioButton"/>
 
@@ -75,7 +74,6 @@
                         android:id="@+id/question1Pentax"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="checkQuestionRadioButton"
                         android:text="@string/pentax"
                         style="@style/radioButton"/>
 
@@ -83,7 +81,6 @@
                         android:id="@+id/question1CarlZeiss"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="checkQuestionRadioButton"
                         android:text="@string/carlZeiss"
                         style="@style/radioButton"/>
 
@@ -91,7 +88,6 @@
                         android:id="@+id/question1Canon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="checkQuestionRadioButton"
                         android:text="@string/canon"
                         style="@style/radioButton"/>
 
@@ -114,7 +110,6 @@
                         android:id="@+id/question2Aperture"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="checkQuestionRadioButton"
                         android:text="@string/aperture"
                         style="@style/radioButton"/>
 
@@ -122,7 +117,6 @@
                         android:id="@+id/question2ShutterSpeed"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="checkQuestionRadioButton"
                         android:text="@string/shutterSpeed"
                         style="@style/radioButton"/>
 
@@ -130,7 +124,6 @@
                         android:id="@+id/question2ISO"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="checkQuestionRadioButton"
                         android:text="@string/iso"
                         style="@style/radioButton"/>
 
@@ -138,7 +131,6 @@
                         android:id="@+id/question2None"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="checkQuestionRadioButton"
                         android:text="@string/noneOfTheAbove"
                         style="@style/radioButton"/>
 
@@ -155,7 +147,6 @@
                     android:id="@+id/question3DecSpeed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/decreaseShutterSpeed"
                     style="@style/checkBox"/>
 
@@ -163,7 +154,6 @@
                     android:id="@+id/question3IncF"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/increaseAperture"
                     style="@style/checkBox"/>
 
@@ -171,7 +161,6 @@
                     android:id="@+id/question3IncISO"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/increaseISO"
                     style="@style/checkBox"/>
 
@@ -179,7 +168,6 @@
                     android:id="@+id/question3All"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/allOfTheAbove"
                     style="@style/checkBox"/>
 
@@ -208,7 +196,6 @@
                     android:id="@+id/question5ZoomIn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/zoomIn"
                     style="@style/checkBox"/>
 
@@ -217,14 +204,12 @@
                     style="@style/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/increaseShutterSpeed"/>
 
                 <CheckBox
                     android:id="@+id/question5IncF"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/increaseAperture"
                     style="@style/checkBox"/>
 
@@ -232,7 +217,6 @@
                     android:id="@+id/question5IS"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/useImageStabilization"
                     style="@style/checkBox"/>
 
@@ -261,7 +245,6 @@
                     android:id="@+id/question7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionRadioButton"
                     style="@style/radioGroup">
 
                     <RadioButton
@@ -275,7 +258,6 @@
                         android:id="@+id/question7Metering"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="checkQuestionRadioButton"
                         android:text="@string/metering"
                         style="@style/radioButton"/>
 
@@ -284,14 +266,12 @@
                         style="@style/radioButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="checkQuestionRadioButton"
                         android:text="@string/whiteBalance"/>
 
                     <RadioButton
                         android:id="@+id/question7None"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="checkQuestionRadioButton"
                         android:text="@string/noneOfTheAbove"
                         style="@style/radioButton"/>
 
@@ -322,7 +302,6 @@
                     android:id="@+id/question9Jpg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/jpg"
                     style="@style/checkBox"/>
 
@@ -330,7 +309,6 @@
                     android:id="@+id/question9Raw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/raw"
                     style="@style/checkBox"/>
 
@@ -338,7 +316,6 @@
                     android:id="@+id/question9Psd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/psd"
                     style="@style/checkBox"/>
 
@@ -346,7 +323,6 @@
                     android:id="@+id/question9Png"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/png"
                     style="@style/checkBox"/>
 
@@ -362,7 +338,6 @@
                     android:id="@+id/question10PinView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/pinView"
                     style="@style/checkBox"/>
 
@@ -370,7 +345,6 @@
                     android:id="@+id/question10WideAngle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/wideAngle"
                     style="@style/checkBox"/>
 
@@ -378,7 +352,6 @@
                     android:id="@+id/question10Macro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/macro"
                     style="@style/checkBox"/>
 
@@ -386,7 +359,6 @@
                     android:id="@+id/question10SoftBlur"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="checkQuestionCheckBoxes"
                     android:text="@string/softBlur"
                     style="@style/checkBox"/>
             </LinearLayout>
@@ -408,7 +380,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_general"
             android:layout_weight="1"
-            android:onClick="submitScoreButton"
             android:text="@string/submitButton"/>
 
         <LinearLayout
@@ -439,7 +410,6 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/margin_general"
             android:layout_weight="1"
-            android:onClick="showAnswers"
             android:text="@string/showAnswers"/>
 
     </LinearLayout>
@@ -448,7 +418,6 @@
         android:id="@+id/reset_Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="resetButton"
         android:text="@string/reset"/>
 
 </LinearLayout>

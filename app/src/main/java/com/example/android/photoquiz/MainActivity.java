@@ -42,7 +42,7 @@ import static com.example.android.photoquiz.R.string.question8Answer;
  * Submit Button is enabled and the Show Answers is disabled.
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     
     /** We assign static Resource Ids to all CheckBoxes and RadioButtons with values from 
      * @RES_ID */
@@ -110,6 +110,11 @@ public class MainActivity extends AppCompatActivity {
         // Display score
         displayScore();
 
+        // Initialize OnClickListeners
+        initializeButtonOnClickListeners();
+        initializeRdbChkbOnClickListeners();
+
+        // Disable Answers Button and Reset Button
         disableAnswersButton();
         disableResetButton();
     }
@@ -158,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void submitScoreButton (View view) {
+    public void submitScoreButton() {
         // Checks EditText answers
         checkQuestion4();
         checkQuestion6();
@@ -181,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         pressedSubmitButtonSwitch = true;
     }
 
-    public void showAnswers (View view) {
+    public void showAnswers() {
         // Use for loop to get all CheckBoxes and RadioButton sequentially
         for (int i = 0; i < 28; i++) {
             // Get Resource Id
@@ -233,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
         pressedShowAnswersButtonSwitch = true;
     }
 
-    public void resetButton (View view) {
+    public void resetButton() {
         // Reset score
         finalScore = 0;
 
@@ -307,261 +312,6 @@ public class MainActivity extends AppCompatActivity {
                     lastIndexUsed ++;
                 }
             }
-        }
-
-    }
-
-    // Check RadioButton Answers and calls resIdIndex
-    public void checkQuestionRadioButton(View view) {
-        // Is the view now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which RadioButton was clicked and calls method @resIdIndexChecked to store this
-        // information. If it was not clicked, it calls @resIdIndexUnchecked
-        switch (view.getId()) {
-            // Question 1
-            case 100:
-                if (checked) {
-                    resIdIndexChecked(100);
-                }
-                else {
-                    resIdIndexUnchecked(100);
-                }
-                break;
-            case 101:
-                if (checked) {
-                    resIdIndexChecked(101);
-                }
-                else {
-                    resIdIndexUnchecked(101);
-                }
-                break;
-            case 102:
-                if (checked) {
-                    resIdIndexChecked(102);
-                }
-                else {
-                    resIdIndexUnchecked(102);
-                }
-                break;
-
-            case 103:
-                if (checked) {
-                    resIdIndexChecked(103);
-                }
-                else {
-                    resIdIndexUnchecked(103);
-                }
-                break;
-            // Question 2
-            case 104:
-                if (checked) {
-                    resIdIndexChecked(104);
-                }
-                else {
-                    resIdIndexUnchecked(104);
-                }
-                break;
-            case 105:
-                if (checked) {
-                    resIdIndexChecked(105);
-                }
-                else {
-                    resIdIndexUnchecked(105);
-                }
-                break;
-            case 106:
-                if (checked) {
-                    resIdIndexChecked(106);
-                }
-                else {
-                    resIdIndexUnchecked(106);
-                }
-                break;
-            case 107:
-                if (checked) {
-                    resIdIndexChecked(107);
-                }
-                else {
-                    resIdIndexUnchecked(107);
-                }
-                break;
-            // Question 7
-            case 116:
-                if (checked) {
-                    resIdIndexChecked(116);
-                }
-                else {
-                    resIdIndexUnchecked(116);
-                }
-                break;
-            case 117:
-                if (checked) {
-                    resIdIndexChecked(117);
-                }
-                else {
-                    resIdIndexUnchecked(117);
-                }
-                break;
-            case 118:
-                if (checked) {
-                    resIdIndexChecked(118);
-                }
-                else {
-                    resIdIndexUnchecked(118);
-                }
-                break;
-            case 119:
-                if (checked) {
-                    resIdIndexChecked(119);
-                }
-                else {
-                    resIdIndexUnchecked(119);
-                }
-                break;
-        }
-    }
-
-    // Check CheckBox Answers
-    public void checkQuestionCheckBoxes(View view) {
-        // Is the view now checked?
-        boolean checked = ((CheckBox) view).isChecked();
-
-        // Check which CheckBox was clicked and calls method @resIdIndexChecked to store this
-        // information. If it was not clicked, it calls @resIdIndexUnchecked
-        switch (view.getId()) {
-            // Question 3
-            case 108:
-                if (checked) {
-                    resIdIndexChecked(108);
-                }
-                else {
-                    resIdIndexUnchecked(108);
-                }
-                break;
-            case 109:
-                if (checked) {
-                    resIdIndexChecked(109);
-                }
-                else {
-                    resIdIndexUnchecked(109);
-                }
-                break;
-            case 110:
-                if (checked) {
-                    resIdIndexChecked(110);
-                }
-                else {
-                    resIdIndexUnchecked(110);
-                }
-                break;
-            case 111:
-                if (checked) {
-                    resIdIndexChecked(111);
-                }
-                else {
-                    resIdIndexUnchecked(111);
-                }
-                break;
-            // Question 5
-            case 112:
-                if (checked) {
-                    resIdIndexChecked(112);
-                }
-                else {
-                    resIdIndexUnchecked(112);
-                }
-                break;
-            case 113:
-                if (checked) {
-                    resIdIndexChecked(113);
-                }
-                else {
-                    resIdIndexUnchecked(113);
-                }
-                break;
-            case 114:
-                if (checked) {
-                    resIdIndexChecked(114);
-                }
-                else {
-                    resIdIndexUnchecked(114);
-                }
-                break;
-            case 115:
-                if (checked) {
-                    resIdIndexChecked(115);
-                }
-                else {
-                    resIdIndexUnchecked(115);
-                }
-                break;
-            // Question 9
-            case 120:
-                if (checked) {
-                    resIdIndexChecked(120);
-                }
-                else {
-                    resIdIndexUnchecked(120);
-                }
-                break;
-            case 121:
-                if (checked) {
-                    resIdIndexChecked(121);
-                }
-                else {
-                    resIdIndexUnchecked(121);
-                }
-                break;
-            case 122:
-                if (checked) {
-                    resIdIndexChecked(122);
-                }
-                else {
-                    resIdIndexUnchecked(122);
-                }
-                break;
-            case 123:
-                if (checked) {
-                    resIdIndexChecked(123);
-                }
-                else {
-                    resIdIndexUnchecked(123);
-                }
-                break;
-            // Question 10
-            case 124:
-                if (checked) {
-                    resIdIndexChecked(124);
-                }
-                else {
-                    resIdIndexUnchecked(124);
-                }
-                break;
-            case 125:
-                if (checked) {
-                    resIdIndexChecked(125);
-                }
-                else {
-                    resIdIndexUnchecked(125);
-                }
-                break;
-            case 126:
-                if (checked) {
-                    resIdIndexChecked(126);
-                }
-                else {
-                    resIdIndexUnchecked(126);
-                }
-                break;
-            case 127:
-                if (checked) {
-                    resIdIndexChecked(127);
-                }
-                else {
-                    resIdIndexUnchecked(127);
-                }
-                break;
         }
 
     }
@@ -812,5 +562,327 @@ public class MainActivity extends AppCompatActivity {
         question4EditText = (EditText) findViewById(R.id.question_4_Edit_Text);
         question6EditText = (EditText) findViewById(R.id.question_6_Edit_Text);
         question8EditText = (EditText) findViewById(R.id.question_8_Edit_Text);
+    }
+
+    // Initialize Button OnClickListeners
+    public void initializeButtonOnClickListeners(){
+        answersButton.setOnClickListener(this);
+        submitButton.setOnClickListener(this);
+        resetButton.setOnClickListener(this);
+    }
+
+    // Initialize Radio Button and CheckBox OnClickListeners
+    public void initializeRdbChkbOnClickListeners(){
+        // Get the number of views in the layout
+        int counterViews = viewGroup.getChildCount();
+
+        // Use for loop to select all views sequentially
+        for (int i = 0; i < counterViews; i++) {
+            // Get child i of viewGroup
+            View v = viewGroup.getChildAt(i);
+            // Check if child is CheckBox
+            if (v instanceof CheckBox) {
+                CheckBox chk = (CheckBox) v;
+                // Attach OnclickListener
+                chk.setOnClickListener(this);
+            }
+            // Check if child is RadioGroup
+            else if (v instanceof RadioGroup) {
+                RadioGroup rdgp = (RadioGroup) v;
+                // Get the number of RadioButtons in the RadioGroup
+                int radioButtons = rdgp.getChildCount();
+                // Use for loop to select all RadioButtons sequentially
+                for (int j = 0; j < radioButtons; j++) {
+                    View vr = rdgp.getChildAt(j);
+                    RadioButton rdb = (RadioButton) vr;
+                    // Attach OnclickListener
+                    rdb.setOnClickListener(this);
+                }
+            }
+        }
+    }
+
+    // Implement onClick method
+    @Override
+    public void onClick(View view) {
+        // In the case of Buttons, we simply call the appropriate method
+        // In the case of RadioButtons, we have to create a new Radiobutton rdb each time, check
+        // if is checked and then call resIdIndexChecked or resIdIndexUnchecked
+        // In the case of CheckBoxes, we have to create a new Checkbox chk each time, check if is
+        // checked and then call resIdIndexChecked or resIdIndexUnchecked
+        switch (view.getId()) {
+            // Buttons
+            case R.id.answers_Button:
+                showAnswers();
+                break;
+            case R.id.submit_Button:
+                submitScoreButton();
+                break;
+            case R.id.reset_Button:
+                resetButton();
+                break;
+            // RadioButtons
+            // Question 1
+            case 100:
+                RadioButton rdb = (RadioButton) findViewById(view.getId());
+                if (rdb.isChecked()) {
+                    resIdIndexChecked(100);
+                }
+                else {
+                    resIdIndexUnchecked(100);
+                }
+                break;
+            case 101:
+                rdb = (RadioButton) findViewById(view.getId());
+                if (rdb.isChecked()) {
+                    resIdIndexChecked(101);
+                }
+                else {
+                    resIdIndexUnchecked(101);
+                }
+                break;
+            case 102:
+                rdb = (RadioButton) findViewById(view.getId());
+                if (rdb.isChecked()) {
+                    resIdIndexChecked(102);
+                }
+                else {
+                    resIdIndexUnchecked(102);
+                }
+                break;
+
+            case 103:
+                rdb = (RadioButton) findViewById(view.getId());
+                if (rdb.isChecked()) {
+                    resIdIndexChecked(103);
+                }
+                else {
+                    resIdIndexUnchecked(103);
+                }
+                break;
+            // Question 2
+            case 104:
+                rdb = (RadioButton) findViewById(view.getId());
+                if (rdb.isChecked()) {
+                    resIdIndexChecked(104);
+                }
+                else {
+                    resIdIndexUnchecked(104);
+                }
+                break;
+            case 105:
+                rdb = (RadioButton) findViewById(view.getId());
+                if (rdb.isChecked()) {
+                    resIdIndexChecked(105);
+                }
+                else {
+                    resIdIndexUnchecked(105);
+                }
+                break;
+            case 106:
+                rdb = (RadioButton) findViewById(view.getId());
+                if (rdb.isChecked()) {
+                    resIdIndexChecked(106);
+                }
+                else {
+                    resIdIndexUnchecked(106);
+                }
+                break;
+            case 107:
+                rdb = (RadioButton) findViewById(view.getId());
+                if (rdb.isChecked()) {
+                    resIdIndexChecked(107);
+                }
+                else {
+                    resIdIndexUnchecked(107);
+                }
+                break;
+            // Question 7
+            case 116:
+                rdb = (RadioButton) findViewById(view.getId());
+                if (rdb.isChecked()) {
+                    resIdIndexChecked(116);
+                }
+                else {
+                    resIdIndexUnchecked(116);
+                }
+                break;
+            case 117:
+                rdb = (RadioButton) findViewById(view.getId());
+                if (rdb.isChecked()) {
+                    resIdIndexChecked(117);
+                }
+                else {
+                    resIdIndexUnchecked(117);
+                }
+                break;
+            case 118:
+                rdb = (RadioButton) findViewById(view.getId());
+                if (rdb.isChecked()) {
+                    resIdIndexChecked(118);
+                }
+                else {
+                    resIdIndexUnchecked(118);
+                }
+                break;
+            case 119:
+                rdb = (RadioButton) findViewById(view.getId());
+                if (rdb.isChecked()) {
+                    resIdIndexChecked(119);
+                }
+                else {
+                    resIdIndexUnchecked(119);
+                }
+                break;
+            // CheckBoxes
+            // Question 3
+            case 108:
+                CheckBox chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(108);
+                }
+                else {
+                    resIdIndexUnchecked(108);
+                }
+                break;
+            case 109:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(109);
+                }
+                else {
+                    resIdIndexUnchecked(109);
+                }
+                break;
+            case 110:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(110);
+                }
+                else {
+                    resIdIndexUnchecked(110);
+                }
+                break;
+            case 111:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(111);
+                }
+                else {
+                    resIdIndexUnchecked(111);
+                }
+                break;
+            // Question 5
+            case 112:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(112);
+                }
+                else {
+                    resIdIndexUnchecked(112);
+                }
+                break;
+            case 113:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(113);
+                }
+                else {
+                    resIdIndexUnchecked(113);
+                }
+                break;
+            case 114:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(114);
+                }
+                else {
+                    resIdIndexUnchecked(114);
+                }
+                break;
+            case 115:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(115);
+                }
+                else {
+                    resIdIndexUnchecked(115);
+                }
+                break;
+            // Question 9
+            case 120:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(120);
+                }
+                else {
+                    resIdIndexUnchecked(120);
+                }
+                break;
+            case 121:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(121);
+                }
+                else {
+                    resIdIndexUnchecked(121);
+                }
+                break;
+            case 122:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(122);
+                }
+                else {
+                    resIdIndexUnchecked(122);
+                }
+                break;
+            case 123:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(123);
+                }
+                else {
+                    resIdIndexUnchecked(123);
+                }
+                break;
+            // Question 10
+            case 124:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(124);
+                }
+                else {
+                    resIdIndexUnchecked(124);
+                }
+                break;
+            case 125:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(125);
+                }
+                else {
+                    resIdIndexUnchecked(125);
+                }
+                break;
+            case 126:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(126);
+                }
+                else {
+                    resIdIndexUnchecked(126);
+                }
+                break;
+            case 127:
+                chk = (CheckBox) findViewById(view.getId());
+                if (chk.isChecked()) {
+                    resIdIndexChecked(127);
+                }
+                else {
+                    resIdIndexUnchecked(127);
+                }
+                break;
+        }
     }
 }
