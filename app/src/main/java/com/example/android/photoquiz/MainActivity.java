@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static com.example.android.photoquiz.R.string.question4Answer;
 import static com.example.android.photoquiz.R.string.question6Answer1;
@@ -173,6 +174,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         calcScore();
         // Display score
         displayScore();
+        // Display score toast
+        Toast.makeText(this, "Score: " + finalScore + "/40", Toast.LENGTH_SHORT).show();
         // Enable the Show Answers Button
         enableAnswersButton();
         // Enable the Reset Button
